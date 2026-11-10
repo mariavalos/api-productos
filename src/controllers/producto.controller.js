@@ -29,10 +29,35 @@ const listarProductos = async(req, res) => {
     })
   }
 }
-
+//buscar  ¿como funciona?
+//API REST => http://miaplicacion.com/api/productos/1
 const obtenerProducto = async(req, res) => {
   try{
+    const id = Number(req.params.id)
+    if (id <= 0){
+      return res.status(400).json({
+        ok : false,
+        message: 'El ID no puede ser negativo o cero'
+      })
+    }
 
+// si podemos buscar (>0) utilizaremos execute por que pasaremos parametros 
+//evitaremos sqlinjection (tecnica de hackeo)
+//? = comodin , representa un valor
+const [registro] = await pool.execute(`SELECT * FROM productos WHERE id = ?`,[id])
+  // existe la posibilidad que no encontremos el registro
+  if(registro.length === 0){
+    return res.status(404).json({
+        ok : false,
+        message: 'no existe el producto'
+    })
+  }
+
+  //si llegamos hasta aqui si existe el registro 
+  res.status(200).json({
+    ok: true,
+    data: registro[0]
+  })
   }catch(e){
     console.error(e)
     res.status(500).json({
