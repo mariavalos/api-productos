@@ -3,13 +3,13 @@ USE tiendaperu;
 
 CREATE TABLE IF NOT EXISTS productos
 (
-  id      		  INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  marca   		  VARCHAR(100) NOT NULL,
-  descripcion 	VARCHAR(200) NOT NULL,
-  precio 		    DECIMAL (10,2) NOT NULL,
-  stock 		    INT UNSIGNED NOT NULL DEFAULT 0,
-  create_at   	DATETIME NOT NULL DEFAULT NOW(),
-  update_at 	  DATETIME NULL
+    id      		  INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    marca   		  VARCHAR(100) NOT NULL,
+    descripcion 	VARCHAR(200) NOT NULL,
+    precio 		    DECIMAL (10,2) NOT NULL,
+    stock 		    INT UNSIGNED NOT NULL DEFAULT 0,
+    create_at   	DATETIME NOT NULL DEFAULT NOW(),
+  |update_at 	  DATETIME NULL
 )ENGINE = INNODB; 
 
 INSERT INTO productos

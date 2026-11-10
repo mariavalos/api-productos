@@ -12,15 +12,71 @@ const CAMPOS = 'id, marca, descripcion, precio, stock' //Dato común
 //milisegundos, segundos (1000 = 1seg)
 //Todas las funciones reciben y envian datos (pasarelas)
 // req (require - solicitar >>>), res (result - <<< resultado)
-const listarProductos = async(req, res) => {}
+const listarProductos = async(req, res) => {
+  //se utiliza try - catch por que existe una probabilidad de error 
+  try{
+  const [productos]= await pool.query('SELECT * FROM productos ORDER BY id')
+  res.status(200).json({
+    ok: true,
+    total: productos.length,
+    data: productos
+  })
+  }catch(e){
+    console.error(e)
+    res.status(500).json({
+      ok: false,
+      message: 'Error interno en el servidor'
+    })
+  }
+}
 
-const obtenerProducto = async(req, res) => {}
+const obtenerProducto = async(req, res) => {
+  try{
 
-const crearProducto = async(req, res) => {}
+  }catch(e){
+    console.error(e)
+    res.status(500).json({
+      ok: false,
+      message: 'Error interno en el servidor'
+    })
+  }
+}
 
-const actualizarProducto = async(req, res) => {}
+const crearProducto = async(req, res) => {
+  try{
 
-const eliminarProducto = async(req, res) => {}
+  }catch(e){
+    console.error(e)
+    res.status(500).json({
+      ok: false,
+      message: 'Error interno en el servidor'
+    })
+  }
+}
+
+const actualizarProducto = async(req, res) => {
+  try{
+
+  }catch(e){
+    console.error(e)
+    res.status(500).json({
+      ok: false,
+      message: 'Error interno en el servidor'
+    })
+  }
+}
+
+const eliminarProducto = async(req, res) => {
+  try{
+
+  }catch(e){
+    console.error(e)
+    res.status(500).json({
+      ok: false,
+      message: 'Error interno en el servidor'
+    })
+  }
+}
 
 //Todos los métodos deben ser EXPORTADOS (se utilizarán desde la app)
 //el que lo utilizaré será "routes"
