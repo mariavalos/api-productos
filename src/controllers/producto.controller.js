@@ -11,15 +11,16 @@ const CAMPOS = 'id, marca, descripcion, precio, stock' //Dato común
 //Todas las funciones serán ASÍNCRONAS (tardarán un tiempo en ser resueltas...)
 //milisegundos, segundos (1000 = 1seg)
 //Todas las funciones reciben y envian datos (pasarelas)
-const listarProductos = async() => {}
+// req (require - solicitar >>>), res (result - <<< resultado)
+const listarProductos = async(req, res) => {}
 
-const obtenerProducto = async() => {}
+const obtenerProducto = async(req, res) => {}
 
-const crearProducto = async() => {}
+const crearProducto = async(req, res) => {}
 
-const actualizarProducto = async() => {}
+const actualizarProducto = async(req, res) => {}
 
-const eliminarProducto = async() => {}
+const eliminarProducto = async(req, res) => {}
 
 //Todos los métodos deben ser EXPORTADOS (se utilizarán desde la app)
 //el que lo utilizaré será "routes"
