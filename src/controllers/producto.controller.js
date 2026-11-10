@@ -12,6 +12,20 @@ const CAMPOS = 'id, marca, descripcion, precio, stock' //Dato común
 //milisegundos, segundos (1000 = 1seg)
 //Todas las funciones reciben y envian datos (pasarelas)
 // req (require - solicitar >>>), res (result - <<< resultado)
+const valorX = ({marca , descripcion, precio,stock} = {})=> {
+  const errores = []
+  if(marca.trin()=== '') errores.push('la marca es obligatoria')
+  if(descripcion.trin()=== '') errores.push('la descripcion es obligatoria')
+  if(precio === undefined ||  isNaN(precio) || precio<0) errores.push('verifique el precio')
+  if(stock === undefined ||  Number.isInteger(stock) || Number(stock)<0) errores.push('error en el stock')  
+
+    // es posible tener mas de un error 
+    return errores
+}
+const validarCampos = ({} = {}) => {
+
+}
+//API REST => http://miaplicacion.com/api/productos
 const listarProductos = async(req, res) => {
   //se utiliza try - catch por que existe una probabilidad de error 
   try{
@@ -69,7 +83,14 @@ const [registro] = await pool.execute(`SELECT * FROM productos WHERE id = ?`,[id
 
 const crearProducto = async(req, res) => {
   try{
-
+    const errores = validarCampos(req.body)//req body contiene todos los registros
+    if(errores.length > 0){
+      return res.status(400),json({
+        ok: false,
+        message: 'verifique los datos solicitados',
+        errores
+      })
+    } 
   }catch(e){
     console.error(e)
     res.status(500).json({
