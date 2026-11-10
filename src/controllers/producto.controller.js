@@ -91,6 +91,10 @@ const crearProducto = async(req, res) => {
         errores
       })
     } 
+    //Procedemos a guardar los datos
+    const { marca, descripcion, precio, stock } = req.body
+    const consulta = `INSERT INTO productos(marca,descripcion,precio,stock)VALUES(?,?,?,?)`
+    await pool.execute(consulta,[marca,descripcion,precio,stock])
   }catch(e){
     console.error(e)
     res.status(500).json({
