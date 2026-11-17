@@ -1,0 +1,129 @@
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            border: 0px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: normal;
+        }
+
+        .contenedor {
+            width: 90%;
+            margin: 0 auto;
+            background-color: rgb(231, 145, 95);
+            padding: .5rem;
+            text-align: center;
+        }
+
+        .tarjeta {
+            padding: 1rem;
+            width: 350px;
+            background-color: rgba(209, 241, 64, 0.918);
+            display: inline-block;
+            border-radius: 10px;
+            margin-bottom: .25rem;
+        }
+
+        .tarjeta{
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .tarjeta a{
+          text-decoration: none;
+          font-size: 12px;
+        }
+        a:hover{
+          text-decoration: underline;
+        }
+        
+        .tarjeta h5 {
+            font-style: italic;
+            margin-bottom: .25rem;
+        }
+
+    </style>
+
+    <div class="contenedor">
+        <div class="tarjeta">
+            <h4>Lucero Meneses</h4>
+            <h5>Ingeniería de Software</h5>
+            <a href="tel:956111222">Contactar</a>
+            <a href="mailto:001661025a@senati.pe">Enviar correo</a>
+        </div>
+    </div>    
+
+    <script>
+      /* Imaginemos que los datos para las tarjetas vienen de una consulta */
+      /* Con esta información ¿cómo las renderizamos? */
+      const alumnos = [
+        {
+          apellidos: "Francia Minaya",
+          nombres: "Jhon Edward",
+          carrera:"Ingeniería de Software",
+          telefono: "956111222",
+          correo: "jhon@gmail.com"
+        },
+        {
+          apellidos: "quintana meneses",
+          nombres: "lucero",
+          carrera:"Ingeniería de Software",
+          telefono: "936062111",
+          correo: "lucero@gmail.com"
+        },
+        {
+          apellidos: "de la cruz sotelo",
+          nombres: "jesus",
+          carrera:"mecatronica",
+          telefono: "956511222",
+          correo: "jesus@gmail.com"
+        },
+        {
+          apellidos: "vilcaromeo aguilar",
+          nombres: "alexia",
+          carrera:"cosmetologia",
+          telefono: "956611222",
+          correo: "alexia@gmail.com"
+        },
+        {
+          apellidos: "castilla meneses",
+          nombres: "liam",
+          carrera:"diseño grafico",
+          telefono: "956691222",
+          correo: "liam@gmail.com"
+        },
+      ]  
+      
+      const contenedor = document.querySelector(".contenedor") //. =clase
+      //continuamos..
+      //manejo de DOM object model
+      function renderizarTarjetas(){
+      contenedor.innerHTML = ''
+
+      //paso 1 - recorrer todo el arreglo
+      alumnos.forEach(alumno => {
+        if(alumno.carrera !== 'Ingeniería de Software') return;
+        const nuevatarjeta = `
+        <div class="tarjeta">
+            <h4>${alumno.apellidos} ${alumno.nombres}</h4>
+            <h5>${alumno.carrera}</h5>
+            <a href="tel:${alumno.telefono}">Contactar</a>
+            <a href="mailto:${alumno.correo}">Enviar correo</a>
+        </div>
+        `
+
+        contenedor.innerHTML += nuevatarjeta
+        
+      })
+    }
+
+    renderizarTarjetas()
+
+    </script>
+</body>
+</html>
