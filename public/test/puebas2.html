@@ -49,6 +49,13 @@
 
     </style>
 
+    <select name="selector-carreras" id="selector-carreras">
+      <option value="">Mostar todas</option>
+      <option value="Ingeniería de Software">Ingeniería de Software</option>
+      <option value="Mecatronica">Mecatronica</option>
+      <option value="Cosmetologia">Cosmetologia</option>
+    </select>
+
     <div class="contenedor">
         <div class="tarjeta">
             <h4>Lucero Meneses</h4>
@@ -56,7 +63,8 @@
             <a href="tel:956111222">Contactar</a>
             <a href="mailto:001661025a@senati.pe">Enviar correo</a>
         </div>
-    </div>    
+    
+      </div>    
 
     <script>
       /* Imaginemos que los datos para las tarjetas vienen de una consulta */
@@ -100,14 +108,23 @@
       ]  
       
       const contenedor = document.querySelector(".contenedor") //. =clase
+      const selector = document.getElementById('selector-carreras')
       //continuamos..
+      selector.addEventListener("change" , function(){
+        renderizarTarjetas(selector.value)
+      })
       //manejo de DOM object model
-      function renderizarTarjetas(){
-      contenedor.innerHTML = ''
+      function renderizarTarjetas(carrera = '') {
+        let listaFiltrada = []
+        contenedor.innerHTML = ''
+
+        //operador ternario
+        listaFiltrada = carrera.trim() === ""
+        ? alumnos : 
+        alumnos.filter(alumno => alumno.carrera == carrera)
 
       //paso 1 - recorrer todo el arreglo
-      alumnos.forEach(alumno => {
-        if(alumno.carrera !== 'Ingeniería de Software') return;
+      listaFiltrada.forEach(alumno => {
         const nuevatarjeta = `
         <div class="tarjeta">
             <h4>${alumno.apellidos} ${alumno.nombres}</h4>
@@ -122,7 +139,7 @@
       })
     }
 
-    renderizarTarjetas()
+    renderizarTarjetas("Ingeniería de Software")
 
     </script>
 </body>
